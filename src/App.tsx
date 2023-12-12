@@ -1,6 +1,6 @@
 import css from './App.module.scss'
 
-function App(): JSX.Element {
+const App = (): JSX.Element => {
   return <div className={css.App}></div>
 }
 
