@@ -1,7 +1,7 @@
-import './App.module.scss'
+import css from './App.module.scss'
 
 function App(): JSX.Element {
-  return <div className="App"></div>
+  return <div className={css.App}></div>
 }
 
 export default App
