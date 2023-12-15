@@ -34,6 +34,7 @@ const CategoryTool = (): JSX.Element => {
       category: newCategory,
     }
     addCategory(newCategoryItem)
+    setInputCategory('')
     getCurrentCategories()
   }
 
@@ -48,6 +49,7 @@ const CategoryTool = (): JSX.Element => {
         <Form.Label>Add category</Form.Label>
         <Form.Control
           type="text"
+          value={inputCategory}
           placeholder="Add category"
           onChange={(event) => setInputCategory(event.currentTarget.value)}
         />
@@ -63,7 +65,7 @@ const CategoryTool = (): JSX.Element => {
       <ListGroup>
         {currentCategories.map((category) => (
           <ListGroup.Item key={category.id}>
-            {category.category}
+            {category.category}{' '}
             <Button
               variant="danger"
               size="sm"
