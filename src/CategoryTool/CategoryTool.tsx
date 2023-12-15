@@ -2,7 +2,11 @@ import { Button, Form, ListGroup } from 'react-bootstrap'
 import css from './CategoryTool.module.scss'
 import { useState } from 'react'
 import { useEffectOnce } from 'react-use'
-import { addCategory, getCategories } from '../react-services/categoryService'
+import {
+  addCategory,
+  deleteCategory,
+  getCategories,
+} from '../react-services/categoryService'
 import { v4 as uuidv4 } from 'uuid'
 
 export type CategoryItem = {
@@ -33,7 +37,10 @@ const CategoryTool = (): JSX.Element => {
     getCurrentCategories()
   }
 
-  const handleDeleteCategory = (categoryToDelete: string): void => {}
+  const handleDeleteCategory = (categoryId: string): void => {
+    deleteCategory(categoryId)
+    getCurrentCategories()
+  }
 
   return (
     <div className={css.category_tool}>
@@ -55,7 +62,16 @@ const CategoryTool = (): JSX.Element => {
       <br />
       <ListGroup>
         {currentCategories.map((category) => (
-          <ListGroup.Item key={category.id}>{category.category}</ListGroup.Item>
+          <ListGroup.Item key={category.id}>
+            {category.category}
+            <Button
+              variant="danger"
+              size="sm"
+              onClick={() => handleDeleteCategory(category.id)}
+            >
+              X
+            </Button>
+          </ListGroup.Item>
         ))}
       </ListGroup>
     </div>

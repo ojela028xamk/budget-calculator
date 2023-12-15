@@ -1,4 +1,25 @@
 {
-  "categories": [],
+  "categories": [
+    {
+      "id": "69d070f7-1911-44b8-a765-c30796ab8a8d",
+      "category": "Ruoka ja juoma"
+    },
+    {
+      "id": "c316ee14-3bf5-4cf3-b1d6-b5bad6d22d5d",
+      "category": "Koti"
+    },
+    {
+      "id": "c5a4a506-1671-47b5-aa2e-2b4012671f32",
+      "category": "Liikenne"
+    },
+    {
+      "id": "9de7d62d-e752-43ca-a369-f2e8cbb6c765",
+      "category": "Hyödyke"
+    },
+    {
+      "id": "acbc3cf7-efc4-4a89-b72f-92530dbc4f36",
+      "category": "Viihde"
+    }
+  ],
   "budgetItems": []
 }

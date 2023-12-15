@@ -30,7 +30,9 @@ const addCategory = (category: CategoryItem): Promise<unknown> => {
   )
 }
 
-const deleteCategory = (): void => {}
+const deleteCategory = (id: string): Promise<unknown> => {
+  return customFetch(`http://localhost:3000/categories/${id}`, 'DELETE')
+}
 
 const modifyCategory = (): void => {}
 
