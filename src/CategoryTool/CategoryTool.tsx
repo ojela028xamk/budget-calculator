@@ -1,21 +1,39 @@
 import { Button, Form, ListGroup } from 'react-bootstrap'
 import css from './CategoryTool.module.scss'
 import { useState } from 'react'
-import { useMount } from 'react-use'
-import { getCategories } from '../services/categoryService'
+import { useEffectOnce } from 'react-use'
+import { addCategory, getCategories } from '../react-services/categoryService'
+import { v4 as uuidv4 } from 'uuid'
+
+export type CategoryItem = {
+  id: string
+  category: string
+}
 
 const CategoryTool = (): JSX.Element => {
-  const [newCategory, setNewCategory] = useState<string>('')
+  const [currentCategories, setCurrentCategories] = useState<CategoryItem[]>([])
+  const [inputCategory, setInputCategory] = useState<string>('')
 
-  useMount(() => {
-    getCategories().then((res) => console.log(res))
-  })
-
-  const handleNewCategory = (category: string): void => {
-    console.log(category)
+  const getCurrentCategories = (): void => {
+    getCategories().then((res) => {
+      setCurrentCategories(res as CategoryItem[])
+    })
   }
 
-  const handleDeleteCategory = (category: string): void => {}
+  useEffectOnce(() => {
+    getCurrentCategories()
+  })
+
+  const handleNewCategory = (newCategory: string): void => {
+    const newCategoryItem: CategoryItem = {
+      id: uuidv4(),
+      category: newCategory,
+    }
+    addCategory(newCategoryItem)
+    getCurrentCategories()
+  }
+
+  const handleDeleteCategory = (categoryToDelete: string): void => {}
 
   return (
     <div className={css.category_tool}>
@@ -24,16 +42,21 @@ const CategoryTool = (): JSX.Element => {
         <Form.Control
           type="text"
           placeholder="Add category"
-          onChange={(event) => setNewCategory(event.currentTarget.value)}
+          onChange={(event) => setInputCategory(event.currentTarget.value)}
         />
       </Form>
-      <Button variant="primary" onClick={() => handleNewCategory(newCategory)}>
+      <Button
+        variant="primary"
+        onClick={() => handleNewCategory(inputCategory)}
+      >
         Add
       </Button>
       <br />
       <br />
       <ListGroup>
-        <ListGroup.Item>Testi</ListGroup.Item>
+        {currentCategories.map((category) => (
+          <ListGroup.Item key={category.id}>{category.category}</ListGroup.Item>
+        ))}
       </ListGroup>
     </div>
   )

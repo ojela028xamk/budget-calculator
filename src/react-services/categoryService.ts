@@ -1,6 +1,9 @@
+import { CategoryItem } from '../CategoryTool/CategoryTool'
+
 const customFetch = async (
   url: RequestInfo | URL,
-  currentMethod: string
+  currentMethod: string,
+  currentBody?: BodyInit
 ): Promise<unknown> => {
   const requestOptions: RequestInit = {
     method: currentMethod,
@@ -8,6 +11,7 @@ const customFetch = async (
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
+    body: currentBody || null,
   }
 
   try {
@@ -18,7 +22,13 @@ const customFetch = async (
   }
 }
 
-const addCategory = (): void => {}
+const addCategory = (category: CategoryItem): Promise<unknown> => {
+  return customFetch(
+    'http://localhost:3000/categories',
+    'POST',
+    JSON.stringify(category)
+  )
+}
 
 const deleteCategory = (): void => {}
 
