@@ -1,3 +1,4 @@
+import { JSX } from 'react'
 import CategoryTool from './CategoryTool/CategoryTool'
 import css from './App.module.scss'
 
