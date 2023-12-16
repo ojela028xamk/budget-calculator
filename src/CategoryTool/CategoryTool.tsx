@@ -1,5 +1,4 @@
 import { Button, Form, ListGroup } from 'react-bootstrap'
-import css from './CategoryTool.module.scss'
 import { useState } from 'react'
 import { useEffectOnce } from 'react-use'
 import {
@@ -8,6 +7,7 @@ import {
   getCategories,
 } from '../react-services/categoryService'
 import { v4 as uuidv4 } from 'uuid'
+import css from './CategoryTool.module.scss'
 
 export type CategoryItem = {
   id: string
@@ -62,10 +62,10 @@ const CategoryTool = (): JSX.Element => {
       </Button>
       <br />
       <br />
-      <ListGroup>
+      <ListGroup className={css.category_tool_list}>
         {currentCategories.map((category) => (
           <ListGroup.Item key={category.id}>
-            {category.category}{' '}
+            <span>{category.category} </span>
             <Button
               variant="danger"
               size="sm"

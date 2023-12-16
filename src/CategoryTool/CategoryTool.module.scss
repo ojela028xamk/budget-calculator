@@ -7,4 +7,16 @@
     button {
         margin-top: 1em;
     }
+
+    .category_tool_list {
+        margin: auto;
+        width: 20vw;
+        span {
+            float: left;
+        }
+        button {
+            margin-top: 0em;
+            float: right;
+        }
+    }
 }
