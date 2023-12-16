@@ -1,0 +1,22 @@
+.category_tool {
+    margin: auto;
+    padding: 5em;
+    width: 50vw;
+    border: 2px solid black;
+
+    button {
+        margin-top: 1em;
+    }
+
+    .category_tool_list {
+        margin: auto;
+        width: 20vw;
+        span {
+            float: left;
+        }
+        button {
+            margin-top: 0em;
+            float: right;
+        }
+    }
+}
