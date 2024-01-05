@@ -17,9 +17,24 @@
       "category": "Ruoka ja juoma"
     },
     {
-      "id": "1b5a30ff-563a-4f7a-aeae-cade684c4011",
+      "id": "a83d4d8a-4485-427d-b149-b4e32b94a723",
       "category": "Hyödyke"
     }
   ],
-  "budgetItems": []
+  "budgetItems": [
+    {
+      "id": "d5a496fd-34f7-4e3f-9812-e1083d7af0e6",
+      "name": "Juusto",
+      "date": "2024-01-05T11:51:01.381Z",
+      "category": "Ruoka ja juoma",
+      "price": 3
+    },
+    {
+      "id": "be39283f-37cb-4dae-8a84-a05a64e254d1",
+      "name": "Netflix",
+      "date": "2024-01-05T11:51:20.901Z",
+      "category": "Viihde",
+      "price": 10
+    }
+  ]
 }

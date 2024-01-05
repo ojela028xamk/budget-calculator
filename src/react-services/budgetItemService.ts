@@ -1,3 +1,5 @@
+import { BudgetItem } from '../BudgetItemTool/BudgetItemTool'
+
 const customFetch = async (
   url: RequestInfo | URL,
   currentMethod: string,
@@ -20,7 +22,7 @@ const customFetch = async (
   }
 }
 
-const addBudgetItem = (budgetItem: unknown): Promise<unknown> => {
+const addBudgetItem = (budgetItem: BudgetItem): Promise<unknown> => {
   return customFetch(
     'http://localhost:3000/budgetItems',
     'POST',
