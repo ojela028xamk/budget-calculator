@@ -17,9 +17,17 @@
       "category": "Ruoka ja juoma"
     },
     {
-      "id": "1b5a30ff-563a-4f7a-aeae-cade684c4011",
+      "id": "a83d4d8a-4485-427d-b149-b4e32b94a723",
       "category": "Hyödyke"
     }
   ],
-  "budgetItems": []
+  "budgetItems": [
+    {
+      "id": "2f4842db-0a2c-4df6-a796-398143a26c6b",
+      "name": "Netflix",
+      "date": "2024-01-06T13:18:03.515Z",
+      "category": "Viihde",
+      "price": 10
+    }
+  ]
 }
