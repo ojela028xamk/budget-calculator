@@ -7,6 +7,7 @@ import { useEffectOnce } from 'react-use'
 import { v4 as uuidv4 } from 'uuid'
 import {
   addBudgetItem,
+  deleteBudgetItem,
   getBudgetItems,
 } from '../react-services/budgetItemService'
 
@@ -56,6 +57,11 @@ const BudgetItemTool = (): JSX.Element => {
     addBudgetItem(newBudgetItem)
     setBudgetName('')
     setBudgetPrice(0)
+    getCurrentBudgetItems()
+  }
+
+  const handleDeleteBudgetItem = (itemId: string): void => {
+    deleteBudgetItem(itemId)
     getCurrentBudgetItems()
   }
 
@@ -120,6 +126,9 @@ const BudgetItemTool = (): JSX.Element => {
               <th>Name</th>
               <th>Category</th>
               <th>Price</th>
+              <th>
+                <i className="bi bi-trash"></i>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -129,6 +138,16 @@ const BudgetItemTool = (): JSX.Element => {
                 <td>{item.name}</td>
                 <td>{item.category}</td>
                 <td>{item.price}</td>
+                <td>
+                  {' '}
+                  <Button
+                    variant="danger"
+                    size="sm"
+                    onClick={() => handleDeleteBudgetItem(item.id)}
+                  >
+                    X
+                  </Button>
+                </td>
               </tr>
             ))}
           </tbody>

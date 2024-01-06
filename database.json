@@ -23,16 +23,9 @@
   ],
   "budgetItems": [
     {
-      "id": "d5a496fd-34f7-4e3f-9812-e1083d7af0e6",
-      "name": "Juusto",
-      "date": "2024-01-05T11:51:01.381Z",
-      "category": "Ruoka ja juoma",
-      "price": 3
-    },
-    {
-      "id": "be39283f-37cb-4dae-8a84-a05a64e254d1",
+      "id": "2f4842db-0a2c-4df6-a796-398143a26c6b",
       "name": "Netflix",
-      "date": "2024-01-05T11:51:20.901Z",
+      "date": "2024-01-06T13:18:03.515Z",
       "category": "Viihde",
       "price": 10
     }
