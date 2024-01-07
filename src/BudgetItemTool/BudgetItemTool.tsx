@@ -1,4 +1,4 @@
-import { JSX, useState } from 'react'
+import { JSX, useEffect, useState } from 'react'
 import css from './BudgetItemTool.module.scss'
 import { Button, Form, Table } from 'react-bootstrap'
 import { CategoryItem } from '../CategoryTool/CategoryTool'
@@ -30,6 +30,7 @@ const BudgetItemTool = (): JSX.Element => {
   const [budgetPrice, setBudgetPrice] = useState<number>(0)
   const [budgetCategory, setBudgetCategory] = useState<string>('')
   const [budgetDate, setBudgetDate] = useState<string>(currentDate)
+  const [totalPrice, setTotalPrice] = useState<number>(0)
 
   const getCurrentCategories = (): void => {
     getCategories().then((res) => {
@@ -47,6 +48,14 @@ const BudgetItemTool = (): JSX.Element => {
     getCurrentCategories()
     getCurrentBudgetItems()
   })
+
+  useEffect(() => {
+    if (budgetItems) {
+      let newTotalPrice = 0
+      budgetItems.map((item) => (newTotalPrice += item.price))
+      setTotalPrice(newTotalPrice)
+    }
+  }, [budgetItems])
 
   const handleNewBudgetItem = (): void => {
     const newBudgetItem: BudgetItem = {
@@ -160,6 +169,17 @@ const BudgetItemTool = (): JSX.Element => {
               </tr>
             ))}
           </tbody>
+          <tfoot>
+            <tr>
+              <td colSpan={3}>
+                <h5>Total</h5>
+              </td>
+              <td>
+                <b>{totalPrice.toFixed(2)}</b>
+              </td>
+              <td></td>
+            </tr>
+          </tfoot>
         </Table>
       </div>
     </div>
