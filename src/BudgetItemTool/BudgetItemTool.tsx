@@ -10,11 +10,12 @@ import {
   deleteBudgetItem,
   getBudgetItems,
 } from '../react-services/budgetItemService'
+import { formatISO } from 'date-fns'
 
 export type BudgetItem = {
   id: string
   name: string
-  date: Date
+  date: string
   category: string | null
   price: number
 }
@@ -22,11 +23,13 @@ export type BudgetItem = {
 const BudgetItemTool = (): JSX.Element => {
   const [categories, setCategories] = useState<CategoryItem[]>([])
   const [budgetItems, setBudgetItems] = useState<BudgetItem[]>([])
+  const currentDate = formatISO(new Date(), { representation: 'date' })
 
   // New budget item values
   const [budgetName, setBudgetName] = useState<string>('')
   const [budgetPrice, setBudgetPrice] = useState<number>(0)
   const [budgetCategory, setBudgetCategory] = useState<string>('')
+  const [budgetDate, setBudgetDate] = useState<string>(currentDate)
 
   const getCurrentCategories = (): void => {
     getCategories().then((res) => {
@@ -49,7 +52,7 @@ const BudgetItemTool = (): JSX.Element => {
     const newBudgetItem: BudgetItem = {
       id: uuidv4(),
       name: budgetName,
-      date: new Date(),
+      date: budgetDate,
       category: budgetCategory ? budgetCategory : null,
       price: budgetPrice,
     }
@@ -111,6 +114,12 @@ const BudgetItemTool = (): JSX.Element => {
               readOnly
             />
           )}
+          <Form.Label>Date</Form.Label>
+          <Form.Control
+            type="date"
+            value={budgetDate}
+            onChange={(event) => setBudgetDate(event.currentTarget.value)}
+          />
           <br />
           <Button variant="primary" onClick={handleNewBudgetItem}>
             Add
@@ -134,7 +143,7 @@ const BudgetItemTool = (): JSX.Element => {
           <tbody>
             {budgetItems.map((item) => (
               <tr key={item.id}>
-                <td>{new Date(item.date).toDateString()}</td>
+                <td>{item.date}</td>
                 <td>{item.name}</td>
                 <td>{item.category}</td>
                 <td>{item.price}</td>
