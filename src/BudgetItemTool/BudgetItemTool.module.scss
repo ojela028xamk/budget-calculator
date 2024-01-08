@@ -1,0 +1,15 @@
+.budget_item_tool {
+    padding: 1em;
+    display: flex;
+
+    .add_item {
+        flex: 1;
+        padding: 1em;
+    }
+
+    .items_list {
+        flex: 2;
+        padding: 1em;
+    }
+
+}
