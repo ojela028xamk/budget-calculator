@@ -19,9 +19,11 @@ const CategoryTool = (): JSX.Element => {
   const [inputCategory, setInputCategory] = useState<string>('')
 
   const getCurrentCategories = (): void => {
-    getCategories().then((res) => {
-      setCurrentCategories(res as CategoryItem[])
-    })
+    getCategories()
+      .then((res) => {
+        setCurrentCategories(res as CategoryItem[])
+      })
+      .catch((err) => console.log(err))
   }
 
   useEffectOnce(() => {
@@ -33,14 +35,21 @@ const CategoryTool = (): JSX.Element => {
       id: uuidv4(),
       category: newCategory,
     }
+
     addCategory(newCategoryItem)
-    setInputCategory('')
-    getCurrentCategories()
+      .then(() => {
+        setInputCategory('')
+        getCurrentCategories()
+      })
+      .catch((err) => console.log(err))
   }
 
   const handleDeleteCategory = (categoryId: string): void => {
     deleteCategory(categoryId)
-    getCurrentCategories()
+      .then(() => {
+        getCurrentCategories()
+      })
+      .catch((err) => console.log(err))
   }
 
   return (

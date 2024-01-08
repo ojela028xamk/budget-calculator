@@ -1,4 +1,21 @@
 {
-    "categories": [],
-    "budgetItems": []
+  "categories": [
+    {
+      "id": "f448f9ed-786d-4b9c-aff2-1b032a871e80",
+      "category": "Food & Drink"
+    },
+    {
+      "id": "d824ac72-3d52-46f9-b91d-ad49270bd4d2",
+      "category": "Entertainment"
+    },
+    {
+      "id": "5e6fdf9d-2424-42a7-99ab-2d4bd7c3ebdc",
+      "category": "Housing"
+    },
+    {
+      "id": "e1aab436-3237-4f72-881c-977742c35bf4",
+      "category": "Transportation"
+    }
+  ],
+  "budgetItems": []
 }
