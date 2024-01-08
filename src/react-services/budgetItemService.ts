@@ -18,7 +18,7 @@ const customFetch = async (
     const response = await fetch(url, requestOptions)
     return await response.json()
   } catch (err) {
-    return err
+    throw err
   }
 }
 
