@@ -33,15 +33,19 @@ const BudgetItemTool = (): JSX.Element => {
   const [totalPrice, setTotalPrice] = useState<number>(0)
 
   const getCurrentCategories = (): void => {
-    getCategories().then((res) => {
-      setCategories(res as CategoryItem[])
-    })
+    getCategories()
+      .then((res) => {
+        setCategories(res as CategoryItem[])
+      })
+      .catch((err) => console.log(err))
   }
 
   const getCurrentBudgetItems = (): void => {
-    getBudgetItems().then((res) => {
-      setBudgetItems(res as BudgetItem[])
-    })
+    getBudgetItems()
+      .then((res) => {
+        setBudgetItems(res as BudgetItem[])
+      })
+      .catch((err) => console.log(err))
   }
 
   useEffectOnce(() => {
@@ -67,14 +71,20 @@ const BudgetItemTool = (): JSX.Element => {
     }
 
     addBudgetItem(newBudgetItem)
-    setBudgetName('')
-    setBudgetPrice(0)
-    getCurrentBudgetItems()
+      .then(() => {
+        setBudgetName('')
+        setBudgetPrice(0)
+        getCurrentBudgetItems()
+      })
+      .catch((err) => console.log(err))
   }
 
   const handleDeleteBudgetItem = (itemId: string): void => {
     deleteBudgetItem(itemId)
-    getCurrentBudgetItems()
+      .then(() => {
+        getCurrentBudgetItems()
+      })
+      .catch((err) => console.log(err))
   }
 
   return (
