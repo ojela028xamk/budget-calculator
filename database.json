@@ -17,5 +17,27 @@
       "category": "Transportation"
     }
   ],
-  "budgetItems": []
+  "budgetItems": [
+    {
+      "id": "e69b7ac5-2e86-49ad-8519-e6fae0e6331a",
+      "name": "Youtube Premium",
+      "type": "Expense",
+      "category": "Entertainment",
+      "price": 11.99
+    },
+    {
+      "id": "3cf11faa-68f2-4ee7-9771-3c0e84712617",
+      "name": "Rent",
+      "type": "Expense",
+      "category": "Housing",
+      "price": 650
+    },
+    {
+      "id": "f7db9121-1b76-44fb-9224-5d266259f3b8",
+      "name": "Netflix Basic",
+      "type": "Expense",
+      "category": "Entertainment",
+      "price": 7.99
+    }
+  ]
 }
