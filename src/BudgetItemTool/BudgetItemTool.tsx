@@ -1,4 +1,4 @@
-import { JSX, useEffect, useState } from 'react'
+import { JSX, useState } from 'react'
 import css from './BudgetItemTool.module.scss'
 import { Button, Form, Table } from 'react-bootstrap'
 import { CategoryItem } from '../CategoryTool/CategoryTool'
@@ -10,7 +10,6 @@ import {
   deleteBudgetItem,
   getBudgetItems,
 } from '../react-services/budgetItemService'
-import { formatISO } from 'date-fns'
 
 export enum BudgetType {
   INCOME = 'Income',
@@ -28,16 +27,12 @@ export type BudgetItem = {
 const BudgetItemTool = (): JSX.Element => {
   const [categories, setCategories] = useState<CategoryItem[]>([])
   const [budgetItems, setBudgetItems] = useState<BudgetItem[]>([])
-  // const currentDate = formatISO(new Date(), { representation: 'date' })
 
   // New budget item values
   const [budgetName, setBudgetName] = useState<string>('')
   const [budgetType, setBudgetType] = useState<BudgetType>(BudgetType.EXPENSE)
   const [budgetCategory, setBudgetCategory] = useState<string>('')
   const [budgetPrice, setBudgetPrice] = useState<number>(0)
-
-  // const [budgetDate, setBudgetDate] = useState<string>(currentDate)
-  // const [totalPrice, setTotalPrice] = useState<number>(0)
 
   const getCurrentCategories = (): void => {
     getCategories()
@@ -59,14 +54,6 @@ const BudgetItemTool = (): JSX.Element => {
     getCurrentCategories()
     getCurrentBudgetItems()
   })
-
-  /* useEffect(() => {
-    if (budgetItems) {
-      let newTotalPrice = 0
-      budgetItems.map((item) => (newTotalPrice += item.price))
-      setTotalPrice(newTotalPrice)
-    }
-  }, [budgetItems]) */
 
   const handleNewBudgetItem = (): void => {
     const newBudgetItem: BudgetItem = {
@@ -153,12 +140,6 @@ const BudgetItemTool = (): JSX.Element => {
               onChange={() => setBudgetType(type)}
             />
           ))}
-          {/* <Form.Label>Date</Form.Label>
-          <Form.Control
-            type="date"
-            value={budgetDate}
-            onChange={(event) => setBudgetDate(event.currentTarget.value)}
-          /> */}
           <br />
           <br />
           <Button variant="primary" onClick={handleNewBudgetItem}>
@@ -200,17 +181,6 @@ const BudgetItemTool = (): JSX.Element => {
               </tr>
             ))}
           </tbody>
-          {/* <tfoot>
-            <tr>
-              <td colSpan={3}>
-                <h5>Total</h5>
-              </td>
-              <td>
-                <b>{totalPrice.toFixed(2)}</b>
-              </td>
-              <td></td>
-            </tr>
-          </tfoot> */}
         </Table>
       </div>
     </div>
