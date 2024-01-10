@@ -15,6 +15,10 @@
     {
       "id": "e1aab436-3237-4f72-881c-977742c35bf4",
       "category": "Transportation"
+    },
+    {
+      "id": "ed65c16a-c6c8-4dca-b0e1-44fa2930d503",
+      "category": "Work"
     }
   ],
   "budgetItems": [
@@ -38,6 +42,27 @@
       "type": "Expense",
       "category": "Entertainment",
       "price": 7.99
+    },
+    {
+      "id": "fd208ca3-0bac-432c-865c-e37f4d74c61b",
+      "name": "Electricity",
+      "type": "Expense",
+      "category": "Housing",
+      "price": 22
+    },
+    {
+      "id": "8c882e47-c569-4e98-b5ce-65ebd1e298a4",
+      "name": "Water",
+      "type": "Expense",
+      "category": "Housing",
+      "price": 20
+    },
+    {
+      "id": "0416e590-c41a-4598-ba94-31e1fa451b81",
+      "name": "Salary",
+      "type": "Income",
+      "category": "Work",
+      "price": 2000
     }
   ]
 }
