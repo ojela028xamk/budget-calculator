@@ -1,4 +1,9 @@
 import { JSX } from 'react'
+import { BudgetItem } from '../BudgetItemTool/BudgetItemTool'
+
+export interface IncomeExpenseItem extends BudgetItem {
+  date: string
+}
 
 const IncomeExpenseList = (): JSX.Element => {
   return (
