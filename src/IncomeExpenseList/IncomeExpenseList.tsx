@@ -21,7 +21,7 @@ const IncomeExpenseList = (): JSX.Element => {
   const [incExpItems, setIncExpItems] = useState<IncomeExpenseItem[]>([])
   const currentDate = formatISO(new Date(), { representation: 'date' })
   const [budgetDate, setBudgetDate] = useState<string>(currentDate)
-  const [totalPrice, setTotalPrice] = useState<number>(0)
+  const [totalBalance, setTotalBalance] = useState<number>(0)
 
   const getCurrentBudgetItems = (): void => {
     getBudgetItems()
@@ -55,7 +55,7 @@ const IncomeExpenseList = (): JSX.Element => {
           newTotalPrice -= item.price
         }
       })
-      setTotalPrice(newTotalPrice)
+      setTotalBalance(newTotalPrice)
     }
   }, [incExpItems])
 
@@ -180,7 +180,7 @@ const IncomeExpenseList = (): JSX.Element => {
               <b>TOTAL</b>
             </td>
             <td>
-              <b>{totalPrice.toFixed(2)}</b>
+              <b>{totalBalance.toFixed(2)}</b>
             </td>
             <td></td>
           </tr>
