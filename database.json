@@ -67,12 +67,52 @@
   ],
   "incomeExpense": [
     {
-      "id": "3cf11faa-68f2-4ee7-9771-3c0e84712617",
+      "id": "94672931-7106-4271-bad2-eebd75513426",
       "name": "Rent",
       "type": "Expense",
       "category": "Housing",
       "price": 650,
-      "date": "2024-01-01"
+      "date": "2023-12-02"
+    },
+    {
+      "id": "8ac9786d-b433-4c8c-bf31-f6dc532f2ef4",
+      "name": "Youtube Premium",
+      "type": "Expense",
+      "category": "Entertainment",
+      "price": 11.99,
+      "date": "2023-12-07"
+    },
+    {
+      "id": "4eb978e3-0947-4ff3-b1ef-54c9e2e2ab0b",
+      "name": "Electricity",
+      "type": "Expense",
+      "category": "Housing",
+      "price": 22,
+      "date": "2023-12-02"
+    },
+    {
+      "id": "e06de744-7351-4644-8c56-b78ccdeb671d",
+      "name": "Water",
+      "type": "Expense",
+      "category": "Housing",
+      "price": 20,
+      "date": "2023-12-02"
+    },
+    {
+      "id": "0318556f-b845-4108-8489-7c93b9230226",
+      "name": "Salary",
+      "type": "Income",
+      "category": "Work",
+      "price": 2000,
+      "date": "2023-12-29"
+    },
+    {
+      "id": "69d1ab3f-90c4-4713-b153-eed6b426dfd9",
+      "name": "Netflix Basic",
+      "type": "Expense",
+      "category": "Entertainment",
+      "price": 7.99,
+      "date": "2023-12-31"
     }
   ]
 }
