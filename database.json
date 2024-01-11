@@ -65,5 +65,14 @@
       "price": 2000
     }
   ],
-  "incomeExpense": []
+  "incomeExpense": [
+    {
+      "id": "3cf11faa-68f2-4ee7-9771-3c0e84712617",
+      "name": "Rent",
+      "type": "Expense",
+      "category": "Housing",
+      "price": 650,
+      "date": "2024-01-01"
+    }
+  ]
 }
