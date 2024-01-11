@@ -67,14 +67,6 @@
   ],
   "incomeExpense": [
     {
-      "id": "94672931-7106-4271-bad2-eebd75513426",
-      "name": "Rent",
-      "type": "Expense",
-      "category": "Housing",
-      "price": 650,
-      "date": "2023-12-02"
-    },
-    {
       "id": "8ac9786d-b433-4c8c-bf31-f6dc532f2ef4",
       "name": "Youtube Premium",
       "type": "Expense",
@@ -99,7 +91,15 @@
       "date": "2023-12-02"
     },
     {
-      "id": "0318556f-b845-4108-8489-7c93b9230226",
+      "id": "69d1ab3f-90c4-4713-b153-eed6b426dfd9",
+      "name": "Netflix Basic",
+      "type": "Expense",
+      "category": "Entertainment",
+      "price": 7.99,
+      "date": "2023-12-31"
+    },
+    {
+      "id": "0a3600bd-eb04-49cb-bdb6-d7d9edebc00b",
       "name": "Salary",
       "type": "Income",
       "category": "Work",
@@ -107,12 +107,12 @@
       "date": "2023-12-29"
     },
     {
-      "id": "69d1ab3f-90c4-4713-b153-eed6b426dfd9",
-      "name": "Netflix Basic",
+      "id": "004de63d-ccee-4266-890a-3e0231cfdb12",
+      "name": "Rent",
       "type": "Expense",
-      "category": "Entertainment",
-      "price": 7.99,
-      "date": "2023-12-31"
+      "category": "Housing",
+      "price": 650,
+      "date": "2023-12-29"
     }
   ]
 }

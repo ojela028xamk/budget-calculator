@@ -1,5 +1,5 @@
 import { JSX, useEffect, useState } from 'react'
-import { BudgetItem } from '../BudgetItemTool/BudgetItemTool'
+import { BudgetItem, BudgetType } from '../BudgetItemTool/BudgetItemTool'
 import { formatISO } from 'date-fns'
 import { getBudgetItems } from '../react-services/budgetItemService'
 import { Button, Form, Table } from 'react-bootstrap'
@@ -47,7 +47,14 @@ const IncomeExpenseList = (): JSX.Element => {
   useEffect(() => {
     if (incExpItems) {
       let newTotalPrice = 0
-      incExpItems.map((item) => (newTotalPrice += item.price))
+      incExpItems.map((item) => {
+        if (item.type === BudgetType.INCOME) {
+          newTotalPrice += item.price
+        }
+        if (item.type === BudgetType.EXPENSE) {
+          newTotalPrice -= item.price
+        }
+      })
       setTotalPrice(newTotalPrice)
     }
   }, [incExpItems])
@@ -103,7 +110,13 @@ const IncomeExpenseList = (): JSX.Element => {
           <tbody>
             {budgetItems.map((item) => (
               <tr key={item.id}>
-                <td>{item.type}</td>
+                <td
+                  className={
+                    item.type === BudgetType.INCOME ? css.income : css.expense
+                  }
+                >
+                  <b>{item.type}</b>
+                </td>
                 <td>{item.name}</td>
                 <td>{item.category}</td>
                 <td>{item.price}</td>
@@ -126,8 +139,8 @@ const IncomeExpenseList = (): JSX.Element => {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>Date</th>
             <th>Type</th>
+            <th>Date</th>
             <th>Name</th>
             <th>Category</th>
             <th>Price</th>
@@ -137,8 +150,14 @@ const IncomeExpenseList = (): JSX.Element => {
         <tbody>
           {incExpItems.map((item) => (
             <tr key={item.id}>
+              <td
+                className={
+                  item.type === BudgetType.INCOME ? css.income : css.expense
+                }
+              >
+                <b>{item.type}</b>
+              </td>
               <td>{item.date}</td>
-              <td>{item.type}</td>
               <td>{item.name}</td>
               <td>{item.category}</td>
               <td>{item.price}</td>
@@ -149,7 +168,7 @@ const IncomeExpenseList = (): JSX.Element => {
                   size="sm"
                   onClick={() => handleDeleteIncExpItem(item.id)}
                 >
-                  X
+                  <i className="bi bi-trash"></i>
                 </Button>
               </td>
             </tr>
