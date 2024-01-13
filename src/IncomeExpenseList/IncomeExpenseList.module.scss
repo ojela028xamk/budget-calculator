@@ -1,5 +1,10 @@
 .income_expense_list {
     padding: 2em;
+    
+    .table_list {
+        max-height: 400px;
+        overflow: auto;
+    }
 
     .income {
         color: green;

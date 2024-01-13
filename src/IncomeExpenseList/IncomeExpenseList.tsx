@@ -11,6 +11,7 @@ import {
   deleteIncomeExpense,
   getIncomeExpense,
 } from '../react-services/incomeExpenseService'
+import SearchBar from './SearchBar'
 
 export interface IncomeExpenseItem extends BudgetItem {
   date: string
@@ -18,6 +19,9 @@ export interface IncomeExpenseItem extends BudgetItem {
 
 const IncomeExpenseList = (): JSX.Element => {
   const [budgetItems, setBudgetItems] = useState<BudgetItem[]>([])
+  const [filteredBudgetItems, setFilteredBudgetItems] = useState<BudgetItem[]>(
+    []
+  )
   const [incExpItems, setIncExpItems] = useState<IncomeExpenseItem[]>([])
   const currentDate = formatISO(new Date(), { representation: 'date' })
   const [budgetDate, setBudgetDate] = useState<string>(currentDate)
@@ -27,6 +31,7 @@ const IncomeExpenseList = (): JSX.Element => {
     getBudgetItems()
       .then((res) => {
         setBudgetItems(res as BudgetItem[])
+        setFilteredBudgetItems(res as BudgetItem[])
       })
       .catch((err) => console.log(err))
   }
@@ -89,6 +94,7 @@ const IncomeExpenseList = (): JSX.Element => {
   return (
     <div className={css.income_expense_list}>
       <h2>Add budget item to list</h2>
+      <SearchBar items={budgetItems} newItems={setFilteredBudgetItems} />
       <Form>
         <Form.Label>Date</Form.Label>
         <Form.Control
@@ -97,18 +103,63 @@ const IncomeExpenseList = (): JSX.Element => {
           onChange={(event) => setBudgetDate(event.currentTarget.value)}
         />
         <br />
+        <div className={css.table_list}>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Add</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredBudgetItems.map((item) => (
+                <tr key={item.id}>
+                  <td
+                    className={
+                      item.type === BudgetType.INCOME ? css.income : css.expense
+                    }
+                  >
+                    <b>{item.type}</b>
+                  </td>
+                  <td>{item.name}</td>
+                  <td>{item.category}</td>
+                  <td>{item.price}</td>
+                  <td>
+                    {' '}
+                    <Button
+                      variant="success"
+                      size="sm"
+                      onClick={() => handleNewIncExpItem(item)}
+                    >
+                      <i className="bi bi-plus-circle"></i>
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
+        <br />
+      </Form>
+      <h2>Income Expense List</h2>
+      <div className={css.table_list}>
+        {' '}
         <Table striped bordered hover>
           <thead>
             <tr>
               <th>Type</th>
+              <th>Date</th>
               <th>Name</th>
               <th>Category</th>
               <th>Price</th>
-              <th>Add</th>
+              <th>Del</th>
             </tr>
           </thead>
           <tbody>
-            {budgetItems.map((item) => (
+            {incExpItems.map((item) => (
               <tr key={item.id}>
                 <td
                   className={
@@ -117,75 +168,36 @@ const IncomeExpenseList = (): JSX.Element => {
                 >
                   <b>{item.type}</b>
                 </td>
+                <td>{item.date}</td>
                 <td>{item.name}</td>
                 <td>{item.category}</td>
                 <td>{item.price}</td>
                 <td>
                   {' '}
                   <Button
-                    variant="success"
+                    variant="danger"
                     size="sm"
-                    onClick={() => handleNewIncExpItem(item)}
+                    onClick={() => handleDeleteIncExpItem(item.id)}
                   >
-                    <i className="bi bi-plus-circle"></i>
+                    <i className="bi bi-trash"></i>
                   </Button>
                 </td>
               </tr>
             ))}
           </tbody>
-        </Table>
-      </Form>
-      <h2>Income Expense List</h2>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Type</th>
-            <th>Date</th>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Price</th>
-            <th>Del</th>
-          </tr>
-        </thead>
-        <tbody>
-          {incExpItems.map((item) => (
-            <tr key={item.id}>
-              <td
-                className={
-                  item.type === BudgetType.INCOME ? css.income : css.expense
-                }
-              >
-                <b>{item.type}</b>
+          <tfoot>
+            <tr>
+              <td colSpan={4}>
+                <b>TOTAL</b>
               </td>
-              <td>{item.date}</td>
-              <td>{item.name}</td>
-              <td>{item.category}</td>
-              <td>{item.price}</td>
               <td>
-                {' '}
-                <Button
-                  variant="danger"
-                  size="sm"
-                  onClick={() => handleDeleteIncExpItem(item.id)}
-                >
-                  <i className="bi bi-trash"></i>
-                </Button>
+                <b>{totalBalance.toFixed(2)}</b>
               </td>
+              <td></td>
             </tr>
-          ))}
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colSpan={4}>
-              <b>TOTAL</b>
-            </td>
-            <td>
-              <b>{totalBalance.toFixed(2)}</b>
-            </td>
-            <td></td>
-          </tr>
-        </tfoot>
-      </Table>
+          </tfoot>
+        </Table>
+      </div>
     </div>
   )
 }
