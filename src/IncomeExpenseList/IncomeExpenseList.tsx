@@ -11,6 +11,7 @@ import {
   deleteIncomeExpense,
   getIncomeExpense,
 } from '../react-services/incomeExpenseService'
+import SearchBar from './SearchBar'
 
 export interface IncomeExpenseItem extends BudgetItem {
   date: string
@@ -18,6 +19,9 @@ export interface IncomeExpenseItem extends BudgetItem {
 
 const IncomeExpenseList = (): JSX.Element => {
   const [budgetItems, setBudgetItems] = useState<BudgetItem[]>([])
+  const [filteredBudgetItems, setFilteredBudgetItems] = useState<BudgetItem[]>(
+    []
+  )
   const [incExpItems, setIncExpItems] = useState<IncomeExpenseItem[]>([])
   const currentDate = formatISO(new Date(), { representation: 'date' })
   const [budgetDate, setBudgetDate] = useState<string>(currentDate)
@@ -27,6 +31,7 @@ const IncomeExpenseList = (): JSX.Element => {
     getBudgetItems()
       .then((res) => {
         setBudgetItems(res as BudgetItem[])
+        setFilteredBudgetItems(res as BudgetItem[])
       })
       .catch((err) => console.log(err))
   }
@@ -89,6 +94,7 @@ const IncomeExpenseList = (): JSX.Element => {
   return (
     <div className={css.income_expense_list}>
       <h2>Add budget item to list</h2>
+      <SearchBar items={budgetItems} newItems={setFilteredBudgetItems} />
       <Form>
         <Form.Label>Date</Form.Label>
         <Form.Control
@@ -109,7 +115,7 @@ const IncomeExpenseList = (): JSX.Element => {
               </tr>
             </thead>
             <tbody>
-              {budgetItems.map((item) => (
+              {filteredBudgetItems.map((item) => (
                 <tr key={item.id}>
                   <td
                     className={
