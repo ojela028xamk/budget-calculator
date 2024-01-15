@@ -1,6 +1,6 @@
 import { Form, InputGroup } from 'react-bootstrap'
 import { BudgetItem } from '../BudgetItemTool/BudgetItemTool'
-import css from './IncomeExpenseList.module.scss'
+import css from './SearchBar.module.scss'
 
 type SearchBarProps = {
   items: BudgetItem[]
