@@ -11,7 +11,7 @@ import {
   deleteIncomeExpense,
   getIncomeExpense,
 } from '../react-services/incomeExpenseService'
-import SearchBar from './SearchBar'
+import SearchBar from '../_shared/SearchBar'
 
 export interface IncomeExpenseItem extends BudgetItem {
   date: string
